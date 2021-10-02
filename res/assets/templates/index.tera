@@ -35,17 +35,17 @@
           <a href="/" class="logo">
             <img src="{{ config.logo_url | escape }}" alt="" />
 
-            <span class="logo-label font-sans-semibold">Status</span>
+            <span class="logo-label font-sans-semibold">Server status</span>
           </a>
 
           <nav>
             <ul>
               <li>
-                <a href="{{ config.support_url | escape }}" style="background-color: {{ config.logo_color | escape }};" class="nav-support font-sans-semibold">Contact support</a>
+                <a href="{{ config.support_url | escape }}" style="background-color: {{ config.logo_color | escape }};" class="nav-support font-sans-semibold">Support contacteren</a>
               </li>
 
               <li>
-                <a href="{{ config.website_url | escape }}" target="_blank" class="nav-website font-sans-bold">Go to website</a>
+                <a href="{{ config.website_url | escape }}" target="_blank" class="nav-website font-sans-bold">Website</a>
               </li>
             </ul>
           </nav>
@@ -59,11 +59,11 @@
       <div class="wrapper">
         <h1 class="font-sans-semibold">
           {% if states.status == "dead" %}
-            Partial service outage ongoing
+            Gedeeltelijke dienstonderbreking aan de gang
           {% elif states.status == "sick" %}
-            Minor service slowdown ongoing
+            Kleine vertraging in de dienstverlening
           {% else %}
-            All systems report as healthy
+            Alle servers rapporteren als online!
           {% endif %}
         </h1>
 
@@ -73,7 +73,7 @@
           {% if states.date %}
             refreshed {{ states.date | escape }}
           {% else %}
-            not yet refreshed
+            nog niet vernieuwd
           {% endif %}
         </h4>
       </div>
@@ -88,26 +88,26 @@
         <div class="general-inner">
           <h2 class="font-sans-bold">
             {% if states.status == "dead" %}
-              Looks like some services are not working.
+              Het lijkt erop dat sommige diensten niet werken.
             {% elif states.status == "sick" %}
-              Looks like services are under high load.
+              Het lijkt erop dat de diensten onder hoge belasting staan.
             {% else %}
-              Looks like everything is operating normally.
+              Alles lijkt normaal te werken.
             {% endif %}
           </h2>
 
-          <p class="font-sans-semibold">This status page automatically monitors our systems and alerts if something is not working as expected.</p>
+          <p class="font-sans-semibold">Deze statuspagina controleert automatisch onze systemen en waarschuwt als iets niet werkt zoals verwacht.</p>
 
           <p class="font-sans-regular">
             {% if states.status == "dead" %}
-              Our team has been notified of the issue. If the outage persists,
+              Ons team is op de hoogte gebracht van het probleem. Als de storing aanhoudt,
             {% elif states.status == "sick" %}
-              Services are slower than usual at the moment. If you are encountering an issue,
+              De diensten zijn momenteel trager dan gewoonlijk. Als u een probleem ondervindt,
             {% else %}
-              All systems are healthy at the moment. If you are encountering an issue,
+              Alle systemen zijn op dit moment gezond. Als u een probleem ondervindt,
             {% endif %}
 
-            please <a href="{{ config.support_url | escape }}" class="font-sans-semibold">contact our support</a>.
+            please <a href="{{ config.support_url | escape }}" class="font-sans-semibold">contacteer onze support</a>.
           </p>
         </div>
       </section>
@@ -137,23 +137,23 @@
                           <span class="tooltip-value-text">
                             <span class="tooltip-main font-sans-semibold">
                               {% if replica.status == "dead" %}
-                                This replica reports as dead.
+                                Deze replica rapporteert als dood.
                               {% elif replica.status == "sick" %}
-                                This replica reports as sick.
+                                Deze replica rapporteert als ziek.
                               {% else %}
-                                This replica reports as healthy.
+                                Deze replica rapporteert als gezond.
                               {% endif %}
                             </span>
 
                             <span class="tooltip-label font-sans-light">
                               {% if node.mode == "local" %}
-                                Checked via a local probe (internal).
+                                Gecontroleerd via (internal).
                               {% elif node.mode == "script" %}
                                 Checked via a script probe.
                               {% elif node.mode == "push" %}
-                                Checked via a push probe (Reporter).
+                                Gecontroleerd via (Reporter).
                               {% else %}
-                                Checked via a poll probe (HTTP, TCP or ICMP).
+                                Gecontroleerd via (HTTP, TCP or ICMP).
                               {% endif %}
                             </span>
                           </span>
